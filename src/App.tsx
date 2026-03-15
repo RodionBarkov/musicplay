@@ -1,23 +1,43 @@
+// const tracks = null;
+
+import { useEffect, useState } from "react"
+
+
 
 function App() {
 
-  const tracks = [
-    { id: 1, title: 'Song', url: 'https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3' },
-    { id: 2, title: 'Instrumental', url: 'https://musicfun.it-incubator.app/api/samurai-way-soundtrack-instrumental.mp3' },
-    { id: 3, title: 'Song', url: 'https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3' },
-    { id: 4, title: 'Instrumental', url: 'https://musicfun.it-incubator.app/api/samurai-way-soundtrack-instrumental.mp3' },
-  ]
+  const [selectedTrackId, setSelectedTrackId] = useState(null)
+  const [tracks, setTracks] = useState(null)
+
+  useEffect(() => {
+
+    fetch('https://musicfun.it-incubator.app/api/1.0/playlists/tracks', {
+      headers: {
+        'api-key': 'f505adfb-198d-4a0b-9393-d8b33245ba6f'
+      }
+    }).then(res => res.json())
+      .then(json => setTracks(json.data))
+  }, [])
 
 
+    if (tracks === null) {
+    return <h3>Загрузка...</h3>
+  }
+
+  if (tracks.length === 0) {
+    return <h3>Нет доступных треков</h3>
+  }
 
   return (
     <>
-
+      <button onClick={() => { setSelectedTrackId(null) }}>Сбросить активный трек</button>
       {tracks.map((track) => {
         return (
-          <div key={track.id}className="main">
-            <h1>{track.title}</h1>
-            <audio src={track.url} controls></audio>
+          <div key={track.id} onClick={() => {
+            setSelectedTrackId(track.id)
+          }} style={{ border: track.id === selectedTrackId ? '2px solid red' : 'none' }}>
+            <h1>{track.attributes.title}</h1>
+            <audio src={track.attributes.attachments[0].url} controls></audio>
           </div>
         )
       })}
