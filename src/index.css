@@ -1,4 +1,12 @@
-:root {
+.main {
+  max-width: 80%;
+  background-color: aqua;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
+/* :root {
   --text: #6b6375;
   --text-h: #08060d;
   --bg: #fff;
@@ -108,4 +116,4 @@ code {
   line-height: 135%;
   padding: 4px 8px;
   background: var(--code-bg);
-}
+} */
