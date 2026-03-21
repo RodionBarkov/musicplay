@@ -1,0 +1,64 @@
+. {
+    margin: 0;
+    padding: 0;
+    
+}
+.global {
+    width: 90%;
+    /* background-color: aqua; */
+    display: grid;
+    margin: auto;
+}
+
+.global h1{
+    display: grid;
+    margin: 10px auto;
+}
+
+.tracks {
+    /* background-color: blueviolet; */
+    display: flex;
+    margin: auto;
+}
+
+.song {
+    width:300px;
+    margin: 8px;
+    padding: 10px;
+    border-radius: 16px;
+    background-color: rgba(255, 0, 0, 0.432);
+}
+
+.song.active {
+    background-color: rgba(255, 0, 0, 0.781);
+}
+
+.cover {
+    border-radius: 8px;
+}
+
+.audio {
+    margin-top: 10px;
+}
+
+.songtitle {
+    text-align: center;
+}
+
+.button-reset {
+    display: grid;
+    width: 40%;
+    margin: 10px auto;
+    font-size: 14pt;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.desc {
+    display: grid;
+    width: 100%;
+    margin: 10px auto;
+    text-align: center;
+    background-color: rgba(0, 255, 255, 0.418);
+    border-radius: 16px;
+}
