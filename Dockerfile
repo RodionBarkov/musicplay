@@ -1,0 +1,7 @@
+FROM node:24.12.0
+WORKDIR /app
+COPY ./package.json .
+RUN npm install
+COPY . .
+EXPOSE 5130
+CMD ["npm", "run", "dev"]
