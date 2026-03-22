@@ -1,4 +1,4 @@
-. {
+* {
     margin: 0;
     padding: 0;
     
@@ -27,6 +27,11 @@
     padding: 10px;
     border-radius: 16px;
     background-color: rgba(255, 0, 0, 0.432);
+    transition: 0.2s;
+}
+
+.song:hover {
+    background-color: rgba(255, 0, 0, 0.781);
 }
 
 .song.active {
