@@ -2,12 +2,11 @@
 function ResetButton(props) {
 
 
-    const handleClickReset = () => { props.onTrackSelect?.(null) }
 
     return (
         <>
            
-                <button className="button-reset" onClick={handleClickReset}>
+                <button className="button-reset" onClick={props.handleClickReset}>
                     Сбросить активный трек
                 </button>
 

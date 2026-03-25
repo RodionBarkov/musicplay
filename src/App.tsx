@@ -2,9 +2,9 @@ import { useEffect, useState } from "react"
 import "./style.css"
 import Header from './components/Header.tsx'
 import TrackList from './components/TrackList.tsx'
-import ResetButton from './components/ResetButton.tsx'
 import TrackDetails from './components/TrackDetails.tsx'
 import Footer from './components/Footer.tsx'
+import Player from './components/Player.tsx'
 
 
 
@@ -14,24 +14,32 @@ function App() {
 
   return (
     <>
-      <div className="global">
+      <div className="pse-body">
+
+        <div className="global">
+
+          <Header />
 
 
-        <Header />
+          <div className="main-block">
 
-        <TrackList
-          onTrackSelect={(id) => { setTrackId(id) }}
-          trackId={trackId}
-        />
+            <TrackList
+              onTrackSelect={(id) => { setTrackId(id) }}
+              selectedTrackId={trackId}
+            />
 
-        <ResetButton onTrackSelect={(id) => { setTrackId(id) }} />
+            <Player trackId={trackId}
+            />
 
-        <TrackDetails trackId={trackId} />
+            <TrackDetails trackId={trackId} />
 
-        <Footer />
+          </div>
 
 
 
+          <Footer onTrackSelect={(id) => { setTrackId(id) }}
+            trackId={trackId} />
+        </div>
       </div>
 
     </>

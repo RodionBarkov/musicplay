@@ -9,10 +9,6 @@ function TrackItem(props) {
         <>
 
             <div key={props.track.id} onClick={props.handleClick} className={props.isSelected ? "song active" : "song"}>
-
-
-
-                <h3 className="songtitle">{props.track.name}</h3>
                 <img
                     className="cover"
                     src={props.track.cover_url ? joinUrl(API_BASE_URL, props.track.cover_url) : FALLBACK_COVER}
@@ -23,7 +19,13 @@ function TrackItem(props) {
                     alt={props.track.name}
                     width="100%"
                 />
-                <audio className="audio" src={joinUrl(API_BASE_URL, props.track.audio_url)} controls></audio>
+                <div className="songtitle">
+                    <h4>Сны и кофе</h4>
+                    <h3>{props.track.name}</h3>
+                </div>
+
+
+                
             </div>
 
         </>

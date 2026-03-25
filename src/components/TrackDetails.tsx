@@ -23,18 +23,14 @@ function TrackDetails(props) {
 
     return (
         <div className="desc">
-            <h1>Выбранный трек</h1>
-
-
-            {!selectedTrack && !selectedTrackId && <h3>Трек не выбран</h3>}
+                       {!selectedTrack && !selectedTrackId && <h3>Трек не выбран</h3>}
             {!selectedTrack && selectedTrackId && <h3>Загрузка</h3>}
             {selectedTrack && selectedTrackId && selectedTrack?.id !== selectedTrackId && <h3>Загрузка</h3>}
 
             {selectedTrack &&
 
-                <div>
-
-                    <h3>{selectedTrack.name}</h3>
+                <div className="song-desc">
+                    <h1>{selectedTrack.name}</h1>
 
                     <h4> {selectedTrack?.description} </h4>
 

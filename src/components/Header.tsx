@@ -4,7 +4,9 @@
 function Header() {
 
     return (
-   <h1>Выберите песню </h1>
+<div className="header">
+    ЗАГОЛОВОК
+</div>
 )
 
 
