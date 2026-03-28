@@ -1,6 +1,3 @@
-import { API_BASE_URL, joinUrl } from '../api.tsx';
-const FALLBACK_COVER = joinUrl(API_BASE_URL, "data/noimage.png")
-
 
 function TrackItem(props) {
 
@@ -11,10 +8,10 @@ function TrackItem(props) {
             <div key={props.track.id} onClick={props.handleClick} className={props.isSelected ? "song active" : "song"}>
                 <img
                     className="cover"
-                    src={props.track.cover_url ? joinUrl(API_BASE_URL, props.track.cover_url) : FALLBACK_COVER}
+                    src={props.track.cover_url ? props.joinUrl(props.API_BASE_URL, props.track.cover_url) : props.FALLBACK_COVER}
                     onError={(event) => {
                         event.currentTarget.onerror = null
-                        event.currentTarget.src = FALLBACK_COVER
+                        event.currentTarget.src = props.FALLBACK_COVER
                     }}
                     alt={props.track.name}
                     width="100%"

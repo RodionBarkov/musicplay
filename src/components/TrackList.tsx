@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { API_BASE_URL, joinUrl } from '../api.tsx';
+
 import TrackItem from "./TrackItem.tsx";
 
 
@@ -11,15 +11,11 @@ function TrackList(props) {
     const [tracks, setTracks] = useState<Track[] | null>(null)
 
     useEffect(() => {
-
-
-        fetch(joinUrl(API_BASE_URL, "tracks"), {
-            // headers: {
-            //   'api-key': 'f505adfb-198d-4a0b-9393-d8b33245ba6f'
-            // }
+        fetch(props.joinUrl(props.API_BASE_URL, "tracks"), {
         }).then(res => res.json())
-            .then(json => setTracks(json))
+            .then(json => {setTracks(json); props.onTracks(json);}) 
     }, [])
+
 
     type Track = {
         id: number
@@ -38,17 +34,14 @@ function TrackList(props) {
         return <h3>Нет доступных треков</h3>
     }
 
-
     return (
         <>
             <div className="tracks">
 
-
-
-
                 {tracks.map((track) => {
-
+                    
                     const handleClick = () => { props.onTrackSelect?.(track.id) }
+
 
                     return (
                         <TrackItem key={track.id}
@@ -56,6 +49,9 @@ function TrackList(props) {
                             isSelected={track.id === props.selectedTrackId}
                             selectedTrackId={props.selectedTrackId}
                             handleClick={handleClick}
+                            FALLBACK_COVER={props.FALLBACK_COVER}
+                            API_BASE_URL={props.API_BASE_URL}
+                            joinUrl={props.joinUrl}
                         />
 
                     )

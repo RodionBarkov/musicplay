@@ -13,9 +13,6 @@ function TrackDetails(props) {
             return;
         }
         fetch(joinUrl(API_BASE_URL, "tracks", selectedTrackId), {
-            // headers: {
-            //   'api-key': 'f505adfb-198d-4a0b-9393-d8b33245ba6f'
-            // }
         }).then(res => res.json())
             .then(json => setSelectedTrack(json))
     }, [selectedTrackId])
