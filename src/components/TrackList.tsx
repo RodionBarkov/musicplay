@@ -10,12 +10,7 @@ function TrackList(props) {
 
     const [tracks, setTracks] = useState<Track[] | null>(null)
 
-    useEffect(() => {
-        fetch(props.joinUrl(props.API_BASE_URL, "tracks"), {
-        }).then(res => res.json())
-            .then(json => {setTracks(json); props.onTracks(json);}) 
-    }, [])
-
+    useEffect(() => { setTracks(props.tracks) }, [props.tracks])
 
     type Track = {
         id: number
@@ -38,16 +33,17 @@ function TrackList(props) {
         <>
             <div className="tracks">
 
-                {tracks.map((track) => {
+                {tracks.map((track, index) => {
+
                     
-                    const handleClick = () => { props.onTrackSelect?.(track.id) }
+
+                    const handleClick = () => { props.onTrackSelect?.(index) }
 
 
                     return (
                         <TrackItem key={track.id}
                             track={track}
-                            isSelected={track.id === props.selectedTrackId}
-                            selectedTrackId={props.selectedTrackId}
+                            isSelected={track.id === props.selectedTrack}
                             handleClick={handleClick}
                             FALLBACK_COVER={props.FALLBACK_COVER}
                             API_BASE_URL={props.API_BASE_URL}

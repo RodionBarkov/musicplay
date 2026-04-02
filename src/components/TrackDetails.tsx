@@ -14,13 +14,12 @@ function TrackDetails(props) {
         }
         fetch(joinUrl(API_BASE_URL, "tracks", selectedTrackId), {
         }).then(res => res.json())
-            .then(json => setSelectedTrack(json))
+            .then(json => {setSelectedTrack(json); props.onSelectedTrack(json);})
     }, [selectedTrackId])
-
 
     return (
         <div className="desc">
-                       {!selectedTrack && !selectedTrackId && <h3>Трек не выбран</h3>}
+            {!selectedTrack && !selectedTrackId && <h3>Трек не выбран</h3>}
             {!selectedTrack && selectedTrackId && <h3>Загрузка</h3>}
             {selectedTrack && selectedTrackId && selectedTrack?.id !== selectedTrackId && <h3>Загрузка</h3>}
 

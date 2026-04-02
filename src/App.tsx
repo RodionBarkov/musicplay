@@ -11,21 +11,43 @@ const FALLBACK_COVER = joinUrl(API_BASE_URL, "data/noimage.png")
 
 function App() {
 
+  const [trackIndex, setTrackIndex] = useState(null)
   const [trackId, setTrackId] = useState(null)
   const [tracks, setTracks] = useState(null)
+  const [selectedTrack, setSelectedTrack] = useState(null)
+  const [deletedTrack, setDeletedTrack] = useState(null)
+
+
+
+  // Загрузка списка треков
+  useEffect(() => {
+    fetch(joinUrl(API_BASE_URL, "tracks"))
+      .then(res => res.json())
+      .then(json => {
+        setTracks(json);
+      });
+  }, [deletedTrack]);
+
+
+  useEffect(() => {
+    setTrackId(tracks?.[trackIndex]?.id ?? null)
+  }, [trackIndex, tracks])
+
+  // Кнопки переключения треков
 
   const hendleClickNext = () => {
-    if (trackId === (tracks.length)) { setTrackId(1) }
-    else (setTrackId(trackId + 1))
+    if (trackIndex === (tracks.length - 1)) { setTrackIndex(0) }
+    else { setTrackIndex(trackIndex + 1) }
   }
 
   const hendleClickPrev = () => {
-    if (trackId === 1) {setTrackId(tracks.length)}
-    else (setTrackId(trackId - 1))
+    if (trackIndex === 0) { setTrackIndex(tracks.length - 1) }
+    else { setTrackIndex(trackIndex - 1) }
   }
 
   return (
     <>
+
       <div className="pse-body">
 
         <div className="global">
@@ -36,9 +58,9 @@ function App() {
           <div className="main-block">
 
             <TrackList
-              onTrackSelect={(id) => { setTrackId(id) }}
-              onTracks={setTracks}
-              selectedTrackId={trackId}
+              onTrackSelect={(i) => { setTrackIndex(i) }}
+              tracks={tracks}
+              selectedTrack={trackId}
               FALLBACK_COVER={FALLBACK_COVER}
               API_BASE_URL={API_BASE_URL}
               joinUrl={joinUrl}
@@ -54,16 +76,24 @@ function App() {
 
             <TrackDetails trackId={trackId}
               API_BASE_URL={API_BASE_URL}
-              joinUrl={joinUrl} />
+              joinUrl={joinUrl}
+              onSelectedTrack={(track) => { setSelectedTrack(track) }}
+            />
 
           </div>
 
 
 
           <Footer onTrackSelect={(id) => { setTrackId(id) }}
-            trackId={trackId} />
+            trackId={trackId}
+            selectedTrack={selectedTrack}
+            onDeletedTrack = {(id) => {setDeletedTrack(id)}}
+            
+            
+            />
         </div>
       </div>
+
 
     </>
   )

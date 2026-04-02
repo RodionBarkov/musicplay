@@ -9,17 +9,9 @@ function Player(props) {
     const [currTime, setCurrTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [isSeeking, setIsSeeking] = useState(false);
-    const [tracks, setTracks] = useState<Track[] | null>(null);
 
 
-    // Загрузка списка треков
-    useEffect(() => {
-        fetch(props.joinUrl(props.API_BASE_URL, "tracks"))
-            .then(res => res.json())
-            .then(json => {
-                setTracks(json);
-            });
-    }, []);
+    
 
     // Загрузка выбранного трека
     useEffect(() => {
