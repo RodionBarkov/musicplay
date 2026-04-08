@@ -1,5 +1,5 @@
 import ResetButton from './ResetButton.tsx'
-import TrackEdit from './TrackEdit.tsx'
+
 
 
 function Footer(props) {
@@ -13,16 +13,13 @@ function Footer(props) {
 
             <div className='footerPart'>
                 <ResetButton key={props.trackID}
-                    handleClickReset={handleClickReset} />
+                    handleClickReset={handleClickReset}
+                    trackId={props.trackId}
+                    selectedTrack={props.selectedTrack} />
             </div>
 
             <div className='footerPart'>
-                <TrackEdit
-                    key={props.trackID}
-                    selectedTrack={props.selectedTrack}
-                    trackId={props.trackId}
-                    onDeletedTrack={props.onDeletedTrack}
-                />
+            
             </div>
 
         </div>

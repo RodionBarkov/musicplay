@@ -78,6 +78,8 @@ function App() {
               API_BASE_URL={API_BASE_URL}
               joinUrl={joinUrl}
               onSelectedTrack={(track) => { setSelectedTrack(track) }}
+              selectedTrack={selectedTrack}
+              onDeletedTrack={(id) => { setDeletedTrack(id) }}
             />
 
           </div>
@@ -87,10 +89,7 @@ function App() {
           <Footer onTrackSelect={(id) => { setTrackId(id) }}
             trackId={trackId}
             selectedTrack={selectedTrack}
-            onDeletedTrack = {(id) => {setDeletedTrack(id)}}
-            
-            
-            />
+          />
         </div>
       </div>
 

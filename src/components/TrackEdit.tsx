@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react"
-import { API_BASE_URL, joinUrl } from '../api.tsx';
-
 
 function TrackEdit(props) {
 
@@ -18,43 +16,10 @@ function TrackEdit(props) {
 
     const trackId = (props.trackId)
 
-
-
-    // Удаление трека
-
-    const [deletedTrack, setDeletedTrack] = useState (false)
-
-    const deleteTrack = async (trackId) => {
-        try {
-            const urlDelete = `${API_BASE_URL}/tracks/${trackId}`
-            const response = await fetch(urlDelete, {
-                method: 'DELETE',
-                headers: {
-                    'accept': 'application/json',
-                }
-            });
-
-            if (response.ok) {
-                props.onDeletedTrack(trackId);
-                const isDeleted = () => {
-                    setDeletedTrack(!deletedTrack)
-                }
-            }
-        } catch (error) {
-            console.error('Ошибка:', error);
-        }
-    };
-
-
-
-
-
     return (
         <div className="editDiv">
 
-
             <div className={!seeWindow ? 'editWindow' : 'editWindowActive'}>
-
 
                 {(trackId === undefined) || (track === null) ? <h3>Трек не выбран</h3> :
 
@@ -78,27 +43,16 @@ function TrackEdit(props) {
 
                         <div className="editPart editPartButton">
                             <button className="button-reset">Изменить</button>
-                            <button className="button-reset" onClick={() => deleteTrack(trackId)}>Удалить</button>
                         </div>
 
                     </div>
                 }
-
             </div>
-
-
             <div className="editButton">
-                <button className="button-reset" onClick={handleClickEdit}>
-                    Редактировать трек
+                <button id="buttonEdit" className="button-reset" onClick={handleClickEdit}>
+                    Редактировать
                 </button>
             </div>
-
-
-
-
-
-
-
         </div>
     )
 

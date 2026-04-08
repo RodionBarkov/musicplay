@@ -52,7 +52,6 @@
     display: block;
     margin: 0 auto;
     grid-gap: 10px;
-    cursor: pointer;
     overflow-y: auto;
     height: 100%;
     min-height: 0;
@@ -74,6 +73,7 @@
     transition: 0.2s;
     margin-left: 10px;
     margin-bottom: 10px;
+    cursor: pointer;
 }
 
 .song:last-child {
@@ -112,16 +112,62 @@ h3 {
     display: grid;
     width: 100%;
     height: 100%;
-    margin: auto;
+    max-height: 100%;
     background-color: #414141;
     border-radius: 16px;
+    min-height: 0px;
+}
+
+.descDiv {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    /* background-color: red; */
+    max-height: 100%;
+    min-height: 0px;
 }
 
 .song-desc {
+    margin: 10px 10px auto 10px;
     display: block;
-    margin: 20px 20px;
+    padding: 0px;
+    height: 100%;
+    max-height: 100%;
+    overflow-y: auto;
+    padding: 0px 15px 0px 0px;
+    /* background-color: blue; */
 }
 
+.buttonsDiv {
+    display: grid;
+    width: 100%;
+    height: fit-content;
+    background-color: #414141;
+    border-radius: 0px 0px 16px 16px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.buttonsDiv button {
+    display: block;
+    width: 90%;
+    margin: 5px auto;
+}
+
+#buttonDelete {
+    background-color: rgb(189, 70, 70);
+}
+
+#buttonDelete:hover {
+    background-color: rgb(255, 0, 0);
+}
+
+#buttonEdit {
+    background-color: rgb(49, 133, 49);
+}
+
+#buttonEdit:hover {
+    background-color: rgb(0, 223, 0);
+}
 
 .player {
     display: grid;
@@ -165,11 +211,12 @@ h3 {
 .button-reset {
     margin: auto;
     font-size: 14pt;
-    padding: 8px;
+    padding: 14px;
     border-radius: 8px;
     border: 0px;
     background-color: #0A0A0A;
     cursor: pointer;
+    transition: 0.2s;
 }
 
 
@@ -297,7 +344,7 @@ h3 {
     display: none;
 }
 
-.editWindowActive{
+.editWindowActive {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -312,9 +359,9 @@ h3 {
     display: block;
 }
 
-.editWindowActive h3{
-text-align: center;
-margin: 50px auto;
+.editWindowActive h3 {
+    text-align: center;
+    margin: 50px auto;
 }
 
 .editPart {
@@ -335,6 +382,5 @@ margin: 50px auto;
 
 .editPart button {
     display: grid;
-    margin: 10px 30px;  
+    margin: 10px 30px;
 }
-
